@@ -49,16 +49,13 @@ int main(int argc, char **argv)
 			return (FAILURE_MAIN);
 		ft_lstadd_back(stack_a, new_node);
 		i++;
+
+		// オプションが指定されてたら→それ分岐する。
+		//　オプションがなかったら、disorderで乱れ具合で分岐
+		if ()
+
 	}
 	
 	
 	return (SUCCESS_MAIN);
 }
-
-
-//#include <stdlib.h>
-
-//int main(void)
-//{
-//	printf("d: %d", atoi("hofa"));
-//}
