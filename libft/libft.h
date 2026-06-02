@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 21:23:10 by rnagai            #+#    #+#             */
-/*   Updated: 2026/05/29 19:31:03 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/05/30 15:43:18 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-int		ft_atoi(const char *str, int *failure_flag);
+int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t length);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);
