@@ -56,6 +56,3 @@ void    rrb(t_stack *stack);
 void    rrr(t_stack *a, t_stack *b);
 
 #endif
-
-#endif
-
