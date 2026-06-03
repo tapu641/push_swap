@@ -1,3 +1,4 @@
+
 #include "push_swap.h"
 
 long	ft_atol(char *arg)
@@ -23,11 +24,6 @@ long	ft_atol(char *arg)
 		i++;
 	}
 	return (tmp * sign);
-}
-
-int is_num(char c)
-{
-	return (c >= '0' && c <= '9');
 }
 
 int	is_nums(char *arg)
@@ -73,4 +69,5 @@ int is_duplicate(t_stack *stack, int n)
 	}
 	return (0);
 }
+
 
