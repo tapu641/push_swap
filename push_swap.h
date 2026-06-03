@@ -43,16 +43,16 @@ t_stack *stack_new(int max);
 void    stack_free(t_stack *stack);
 
 // 操作関数
-void    sa(t_stack *stack);
-void    sb(t_stack *stack);
+void    sa(t_stack *stack,int flag);
+void    sb(t_stack *stack,int flag);
 void    ss(t_stack *stack);
 void    pa(t_stack *a, t_stack *b);
 void    pb(t_stack *a, t_stack *b);
-void    ra(t_stack *stack);
-void    rb(t_stack *stack);
+void    ra(t_stack *stack,int flag);
+void    rb(t_stack *stack,int flag);
 void    rr(t_stack *a, t_stack *b);
-void    rra(t_stack *stack);
-void    rrb(t_stack *stack);
+void    rra(t_stack *stack,int flag);
+void    rrb(t_stack *stack,int flag);
 void    rrr(t_stack *a, t_stack *b);
 
 #endif
