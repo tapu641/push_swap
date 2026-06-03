@@ -19,7 +19,7 @@ t_list *node_new(int value)
 // ノードを先頭にする
 void push_front(t_lsit **head, t_list *node)
 {
-	if (!head || !node)\
+	if (!head || !node)
 		return ;
 	node->next = *head;
 	*head = node;
