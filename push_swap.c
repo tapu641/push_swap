@@ -6,12 +6,11 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:08:05 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/06 14:04:57 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/06 14:27:40 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 void	handle_flags(char *arg, t_strategy *strategy)
 {
@@ -99,17 +98,12 @@ int main(int argc, char **argv)
 			return (FAILURE_MAIN);
 		ft_lstadd_back(stack_a, new_node);
 		i++;
-
-		// オプションが指定されてたら→それ分岐する。
-		//　オプションがなかったら、disorderで乱れ具合で分岐
-		if ()
-
 	}
 	
 	// disorderかフラグごとに処理を分岐
-	if (disorder < 0.25 || strategy->strategy_flag == 0)
+	if (strategy->strategy_flag == 0 || disorder < 0.25)
 		simple_sort();
-	else if (disorder < 0.50 || strategy->strategy_flag == 1)
+	else if (strategy->strategy_flag == 1 || disorder < 0.50)
 		medium_sort();
 	else
 		complex_sort();
