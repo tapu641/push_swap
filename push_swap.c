@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:08:05 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/02 22:51:32 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/06 14:04:57 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 	strategy->is_bench = 0;
 
 	// フラグの処理
-	int	parse_flags(char **argv, t_strategy *strategy)
+	flag_count = parse_flags(argv, strategy);
 
 	// フラグを除き引数1以下なら終了
 	if (argc - flag_count <= 2)
