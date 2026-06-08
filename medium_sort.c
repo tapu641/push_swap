@@ -26,3 +26,29 @@ int find_max_index(t_stack *stack)
 	return (max_index);
 }
 
+int my_sqrt(int n)
+{
+	int i;
+
+	i = 1;
+	while (i * i <= n)
+		i++;
+	return (i - 1);
+}
+
+void push_chunks(t_stack *a, t_stack *b)
+{
+	int chunk_size;
+	int chunk_max;
+
+	chunk_size = my_sqrt(a->size);
+	chunk_max = chunk_size;
+
+	while (a->size > 0)
+	{
+		if (a->top->value <= chunk_max)
+			pb(a, b);
+		else
+			
+	}
+}
