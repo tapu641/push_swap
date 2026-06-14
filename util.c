@@ -5,11 +5,11 @@ long	ft_atol(char *arg)
 {
 	size_t	i;
 	int		sign;
-	long	tmp;
+	long	num;
 
 	i = 0;
 	sign = 1;
-	tmp = 0;
+	num = 0;
 	while ((arg[i] >= 9 && arg[i] <= 13) || arg[i] == 32)
 		i++;
 	if (arg[i] == '+' || arg[i] == '-')
@@ -20,10 +20,12 @@ long	ft_atol(char *arg)
 	}
 	while (arg[i] >= '0' && arg[i] <= '9')
 	{
-		tmp = tmp * 10 + (arg[i] - '0');
+		num = num * 10 + (arg[i] - '0');
+		if (num > INT_MAX || num < INT_MIN)
+			exit(EXIT_FAILURE);  // これで問題ないんだっけ、、メモリリーク起きないか忘れた。
 		i++;
 	}
-	return (tmp * sign);
+	return (num * sign);
 }
 
 int	is_nums(char *arg)
@@ -41,6 +43,7 @@ int	is_nums(char *arg)
 	if (arg[i] == '\0')
 		return (0);
 	while (arg[i])
+//重複チェック
 	{
 		if (!is_num(arg[i]))
 			return (0);
@@ -68,6 +71,13 @@ int is_duplicate(t_stack *stack, int n)
 		i++;
 	}
 	return (0);
+}
+
+void print_error()
+{
+	// free_stack() これはいらないよな。
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
 
 

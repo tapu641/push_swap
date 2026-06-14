@@ -8,8 +8,8 @@ t_stack *stack_new(void)
     if (!stack)
     {
         write(2, "Error\n", 6);
-        exit(1);
-    }
+        exit(EXIT_FAILURE);
+	}
     stack->top = NULL;
     stack->size = 0;
     return (stack);
