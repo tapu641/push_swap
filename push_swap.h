@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:14:10 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/14 19:26:26 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/15 21:15:13 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <limits.h> //INT_MIN,INT_MAX
 # include <stdlib.h> //malloc,free,exit
-# include <stdio.h> //malloc,free,exit
-# include <unistd.h>    // write
+# include <stdio.h>  //malloc,free,exit
+# include <unistd.h> //write
 //# include "libft.h"
 
 typedef struct s_list
@@ -92,6 +92,6 @@ void    rrr(t_stack *a, t_stack *b);
 
 // ソートアルゴリズム
 void	simple_sort(t_stack *a, t_stack *b);
-void	complex_sort(t_stack *stack_a, int is_bench);
+void	complex_sort(t_stack *stack_a);
 
 #endif

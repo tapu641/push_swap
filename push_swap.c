@@ -6,11 +6,40 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:08:05 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/14 19:37:27 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/15 21:16:19 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*res;
+
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
+		return (NULL);
+	res->value = content;
+	res->index = 0;
+	res->next = NULL;
+	return (res);
+}
+
+void	ft_lstadd_back(t_stack *stack, t_list *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->stack_a_top)
+	{
+		stack->stack_a_top = new;
+		return ;
+	}
+	while (stack->stack_a_top->next != NULL)
+	{
+		stack->stack_a_top = stack->stack_a_top->next;
+	}
+	stack->stack_a_top->next = new;
+}
 
 int	handle_flags(char *arg, t_stack *stack)
 {
@@ -62,28 +91,67 @@ void	parse_flags(char **argv, t_stack *stack)
 	argv += i;
 }
 
+double	calc_disorder(int *num_arr, int arr_len)
+{
+	int	total_pair;
+	int	mistakes;
+	int i;
+	int j;
+
+	total_pair = 0;
+	mistakes = 0;
+	i = 0;
+	while (i < arr_len - 1)
+	{
+		j = 0;
+		while (i + j < arr_len - 1)
+		{
+			if (num_arr[i] == num_arr[i + j + 1])
+				print_error();
+			if (num_arr[i] > num_arr[i + j + 1])
+				mistakes++;
+			total_pair++;
+		}
+		i++;
+	}
+	return (mistakes / total_pair);
+}
+
+void	assigh_index(t_stack *stack)
+{
+	int	idx;
+	int	stack_idx;
+	int	min_val;
+
+	idx = 0;
+	stack_idx = 0;
+	min_val = 0;
+	while (stack->stack_a_top[stack_idx]->)
+}
+
 void	build_stack(int argc, char **argv, t_stack *stack)
 {
 	int	*num_arr;
-	int i;
-	int num_arr_len;
-	
+	int	arr_len;
+	int	i;
+	t_list	*new_node;
 
+	// 引数が使用可能なものかどうか確認する。
+	num_arr = validate_args(argc, argv, stack, &arr_len);
 
 	// disorderの計算
-	stack->opt_stats->disorder = calc_disorder(num_arr, num_arr_len);
+	stack->opt_stats->disorder = calc_disorder(num_arr, arr_len);
 		// スタックの作成
 	i = 0;
-	while (i < num_arr_len)
+	while (i < arr_len)
 	{
 		new_node = ft_lstnew(num_arr[i]);
 		if (new_node == NULL)
-			write(2, "Error\n", 6); //これいるか？？
-			return (EXIT_FAILURE);
-		ft_lstadd_back(stack_a, new_node)
-	while (*argv[i] != '\0');
-		i++;
+			print_error();
+		ft_lstadd_back_stack(stack, new_node);
 	}
+	// スタックの全体のvalueと比較し小さい順にindexをる。
+	assign_index(stack);
 }
 
 void	initialize_stack(t_stack *stack)
@@ -102,7 +170,6 @@ void	initialize_stack(t_stack *stack)
 		print_error();
 	stack->opt_stats->sa = 0;
 	stack->opt_stats->sb = 0;
-	while (*argv[i] != '\0')
 	stack->opt_stats->ss = 0;
 	stack->opt_stats->pa = 0;
 	stack->opt_stats->pb = 0;
@@ -115,25 +182,27 @@ void	initialize_stack(t_stack *stack)
 	stack->opt_stats->disorder = 0;
 }
 
-void	validate_args(int argc, char **argv, t_stack *stack)
+int	*validate_args(int argc, char **argv, t_stack *stack, int *arr_len)
 {
 	int	flag_count;
 	int	*num_arr;
 	int	i;
 
-	flag_count = stack->strategy->flag_count;
 	// フラグの処理
 	parse_flags(argv, stack);
+	flag_count = stack->strategy->flag_count;
 
-	num_arr = (int *)malloc(sizeof(int) * (argc - flag_count - 1));
+	// arrの長さを測る
+	*arr_len = argc - flag_count - 1;
+	num_arr = (int *)malloc(sizeof(int) * (*arr_len));
 	i = 0;
 	while (*argv[i] != '\0')
 	{
 		// atoiに失敗したらErrorを出力して終了。
-		num_arr[i - flag_count - 1] = ft_atoi(argv[i]);
+		num_arr[i] = ft_atol(argv[i], 0);
 		i++;
 	}
-	num_arr_len = i - flag_count - 1;
+	return (num_arr)
 }
 
 void	switch_algorithm(t_stack *stack)
@@ -171,9 +240,6 @@ int main(int argc, char **argv)
 	if (!stack)
 		print_error();
 	initialize_stack(stack);
-	
-	// 引数が使用可能なものかどうか確認する。
-	validate_args(argc, argv, stack);
 
 	build_stack(argc, argv, stack);
 	// mallocしてint型の配列に格納する

@@ -1,15 +1,13 @@
 
 #include "push_swap.h"
 
-long	ft_atol(char *arg)
+long	ft_atol(char *arg, int i)
 {
-	size_t	i;
-	int		sign;
 	long	num;
+	int		sign;
 
-	i = 0;
-	sign = 1;
 	num = 0;
+	sign = 1;
 	while ((arg[i] >= 9 && arg[i] <= 13) || arg[i] == 32)
 		i++;
 	if (arg[i] == '+' || arg[i] == '-')
@@ -22,10 +20,12 @@ long	ft_atol(char *arg)
 	{
 		num = num * 10 + (arg[i] - '0');
 		if (num > INT_MAX || num < INT_MIN)
-			exit(EXIT_FAILURE);  // これで問題ないんだっけ、、メモリリーク起きないか忘れた。
+			print_error();  // これで問題ないんだっけ、、メモリリーク起きないか忘れた。
 		i++;
+		if (arg[i + 1] == '\0')
+			return (num * sign);
 	}
-	return (num * sign);
+	print_error();
 }
 
 int	is_nums(char *arg)
