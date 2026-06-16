@@ -67,6 +67,7 @@ void ra(t_stack *stack, int flag)
 	if (!stack || !stack->top || stack->size < 2)
 		return ;
 	tmp = pop_front(&(stack->top));
+	tmp->next = NULL;
 	last = stack->top;
 	while (last->next != NULL)
 		last = last->next;
@@ -101,6 +102,7 @@ void rb(t_stack *stack, int flag)
 	if (!stack || !stack->top || stack->size < 2)
 		return ;
 	tmp = pop_front(&(stack->top));
+	tmp->next = NULL;
 	last = stack->top;
 	while (last->next != NULL)
 		last = last->next;
