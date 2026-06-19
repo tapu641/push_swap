@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 20:41:22 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/14 19:35:17 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/19 22:58:13 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ static int	get_max_bits_count(t_stack *stack)
 	return (max_bits);
 }
 
-void	complex_sort(t_stack *stack)
+void	complex_sort(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 {
-	t_stack	*stack_b;
 	int max_bits;
 	int stack_a_size;
 	int i;

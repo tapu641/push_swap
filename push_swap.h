@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:14:10 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/15 21:15:13 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/19 20:53:59 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <unistd.h> //write
 //# include "libft.h"
 
+typedef struct s_stack
+{
+	t_list		*stack_top;
+	int			size;
+}				t_stack;
+
 typedef struct s_list
 {
 	int				value;
@@ -26,14 +32,8 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct s_strategy
-{
-	int	mode;
-	int	is_bench;
-	int	flag_count;
-}		t_strategy;
 
-typedef struct s_opt_stats
+typedef struct s_options
 {
 	int		sa;
 	int		sb;
@@ -47,18 +47,11 @@ typedef struct s_opt_stats
 	int		rrb;
 	int		rrr;
 	double	disorder;
-}			t_opt_stats;
+	int		mode;
+	int		is_bench;
+	int		flag_count;
+}			t_options;
 
-
-
-typedef struct s_stack
-{
-	t_list		*stack_a_top;
-	t_list		*stack_b_top;
-	int			size;
-	t_strategy	*strategy;
-	t_opt_stats	*opt_stats;
-}				t_stack;
 
 # define SIMPLE 0
 # define MEDIUM 1
