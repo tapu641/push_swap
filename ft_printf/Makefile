@@ -5,48 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/06/20 21:46:43 by rnagai            #+#    #+#              #
-#    Updated: 2026/06/20 21:47:06 by rnagai           ###   ########.fr        #
+#    Created: 2026/05/20 20:14:49 by rnagai            #+#    #+#              #
+#    Updated: 2026/06/10 19:29:44 by rnagai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap
+NAME	=	libftprintf.a
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -I ft_printf
-LIBFT	=	ft_printf/libftprintf.a
-SRCS	=	main.c \
-			bench.c \
-			complex_sort.c \
-			node_operations.c \
-			parse.c \
-			push.c \
-			rev_rotate_ops.c \
-			rotate_ops.c \
-			simple_sort.c \
-			stack.c \
-			swap.c \
-			util.c
-OBJS	=	$(SRCS:.c=.o)
+CFLAGS	=	-Wall -Wextra -Werror
+SRCS	=	ft_printf.c \
+			ft_putnbr.c \
+			ft_putptr.c \
+			ft_putstr.c \
+			ft_putdnbr.c
+OBJS = $(SRCS:.c=.o)
 
-all: $(LIBFT) $(NAME)
+all : $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C ft_printf
+$(NAME) : $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
+clean :
 	rm -f $(OBJS)
-	$(MAKE) -C ft_printf clean
 
-fclean: clean
+fclean : clean
 	rm -f $(NAME)
-	$(MAKE) -C ft_printf fclean
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re	
+.PHONY : all clean fclean re

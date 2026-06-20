@@ -1,6 +1,33 @@
 #include "push_swap.h"
 
-t_stack *stack_new(void)
+t_list	*ft_lstnew(int value, int index)
+{
+	t_list	*res;
+
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
+		return (NULL);
+	res->value = value;
+	res->index = index;
+	res->next = NULL;
+	return (res);
+}
+
+void	ft_lstadd_back(t_stack *stack, t_list *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->top)
+	{
+		stack->top = new;
+		return ;
+	}
+	while (stack->top->next != NULL)
+		stack->top = stack->top->next;
+	stack->top->next = new;
+}
+
+t_stack	*stack_new(void)
 {
     t_stack *stack;
 

@@ -6,24 +6,24 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 20:41:22 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/19 22:58:13 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/20 22:43:06 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_max_bits_count(t_stack *stack)
+static int	get_max_bits_count(t_stack *stack_a)
 {
 	t_stack	*stack_ptr;
 	int	num;
 	int max_bits;
 	int bit_count;
 	
-	stack_ptr = stack;
+	stack_ptr = stack_a;
 	max_bits = 0;
 	while (stack_ptr->top != NULL)
 	{
-		num = stack_ptr->top->value;
+		num = stack_ptr->top->index;
 		bit_count = 0;
 		while (num > 0)
 		{
@@ -44,7 +44,8 @@ void	complex_sort(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 	int i;
 	int	j;
 	
-	stack_a_size = stack->stack_a_top->size;
+	opt->calculation = COMPLEX; 
+	stack_a_size = stack_a->size;
 	max_bits = get_max_bits_count(stack_a);
 	i = 0;
 	while (i < max_bits)
@@ -52,14 +53,14 @@ void	complex_sort(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 		j = 0;
 		while (j < stack_a_size)
 		{
-			if ((stack_a->top->value >> i) & 1)
-				ra(stack_a, is_bench);
+			if ((stack_a->top->index >> i) & 1)
+				ra(stack_a, 1, opt);
 			else
-				pb(stack_a, stack_b);
+				pb(stack_a, stack_b, opt);
 			j++;
 		}	 
 		while (stack_b->top != NULL)
-			pa(stack_a, stack_b);
+			pa(stack_a, stack_b, opt);
 		i++;
 	}
 }

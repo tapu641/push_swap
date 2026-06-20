@@ -26,48 +26,21 @@ long	ft_atol(char *arg, int i)
 			return (num * sign);
 	}
 	print_error();
+	return ((long)INT_MIN - 1);
 }
 
-int	is_nums(char *arg)
+
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	long n;
-	int i;
+	size_t	i;
 
 	i = 0;
-	if (!arg || arg[0] == '\0')
-		return (0);
-	//先頭の符号だけ許可
-	if (arg[0] == '-' || arg[0] == '+')
-		i = 1;
-	//arg= "-"の時をケア
-	if (arg[i] == '\0')
-		return (0);
-	while (arg[i])
-//重複チェック
+	while (s1[i] != '\0' || s2[i] != '\0')
 	{
-		if (!is_num(arg[i]))
-			return (0);
-		i++;
-	}
-	//int範囲チェック
-	n = ft_atol(arg);
-	if (n > INT_MAX || n < INT_MIN)
-		return (0);
-	return (1);
-}
-
-//重複チェック
-int is_duplicate(t_stack *stack, int n)
-{
-	int i;
-
-	i = 0;
-	if (!stack)
-		return (0);
-	while (i < stack->size)
-	{
-		if (stack->data[i] == n)
-			return (1);
+		if (s1[i] != s2[i])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
 		i++;
 	}
 	return (0);
