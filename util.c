@@ -26,6 +26,11 @@ long	ft_atol(char *arg)
 	return (tmp * sign);
 }
 
+int is_num(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
 int	is_nums(char *arg)
 {
 	long n;
@@ -54,18 +59,18 @@ int	is_nums(char *arg)
 }
 
 //重複チェック
-int is_duplicate(t_stack *stack, int n)
+int	is_duplicate(t_stack *stack, int n)
 {
-	int i;
+	t_list	*cur;
 
-	i = 0;
 	if (!stack)
 		return (0);
-	while (i < stack->size)
+	cur = stack->top;
+	while (cur)
 	{
-		if (stack->data[i] == n)
+		if (cur->value == n)
 			return (1);
-		i++;
+		cur = cur->next;
 	}
 	return (0);
 }
