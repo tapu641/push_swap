@@ -7,17 +7,17 @@ int	handle_flags(char *arg, t_options *opt)
 
 	not_sort_flag = 0;
 	not_bench_flag = 0;
-	if (ft_strcmp(&arg[0], "simple"))
+	if (ft_strcmp(&arg[0], "simple") == 0)
 		opt->mode = SIMPLE;
-	else if (ft_strcmp(&arg[0], "medium"))
+	else if (ft_strcmp(&arg[0], "medium") == 0)
 		opt->mode = MEDIUM;
-	else if (ft_strcmp(&arg[0], "complex"))
+	else if (ft_strcmp(&arg[0], "complex") == 0)
 		opt->mode = COMPLEX;
-	else if (ft_strcmp(&arg[0], "adaptive"))
+	else if (ft_strcmp(&arg[0], "adaptive") == 0)
 		opt->mode = ADAPTIVE;
 	else
 		not_sort_flag = 1;
-	if (ft_strcmp(&arg[0], "bench"))
+	if (ft_strcmp(&arg[0], "bench") == 0)
 		opt->is_bench = TRUE;
 	else
 		not_bench_flag = 1;
@@ -63,7 +63,7 @@ int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
 			if (num_arr[j] > min_border && num_arr[j] < min_val)
 			{
 				min_val = num_arr[j];
-				num_index_arr[i] = j;
+				num_index_arr[j] = i;
 			}
 			j++;
 		}

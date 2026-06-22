@@ -17,10 +17,9 @@ void	rra(t_stack *stack, int flag, t_options *opt)
 	if (flag)
 	{
 		if (opt->is_bench)
-		{
-			write(1, "rra\n", 3);
 			opt->rra++;
-		}
+		else
+			write(1, "rra\n", 4);
 	}
 }
 
@@ -41,10 +40,9 @@ void	rrb(t_stack *stack, int flag, t_options *opt)
 	if (flag)
 	{
 		if (opt->is_bench)
-		{
-			write(1, "rrb\n", 3);
 			opt->rrb++;
-		}
+		else
+			write(1, "rrb\n", 4);
 	}
 }
 
@@ -53,8 +51,7 @@ void	rrr(t_stack *a, t_stack *b, t_options *opt)
 	rra(a, 0, opt);
 	rrb(b, 0, opt);
 	if (opt->is_bench)
-	{
-		write(1, "rrr\n", 3);
 		opt->rrr++;
-	}
+	else
+		write(1, "rrr\n", 4);
 }

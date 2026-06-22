@@ -14,16 +14,16 @@
 
 static int	get_max_bits_count(t_stack *stack_a)
 {
-	t_stack	*stack_ptr;
-	int	num;
-	int max_bits;
-	int bit_count;
-	
-	stack_ptr = stack_a;
+	t_list	*current;
+	int		num;
+	int		max_bits;
+	int		bit_count;
+
+	current = stack_a->top;
 	max_bits = 0;
-	while (stack_ptr->top != NULL)
+	while (current != NULL)
 	{
-		num = stack_ptr->top->index;
+		num = current->index;
 		bit_count = 0;
 		while (num > 0)
 		{
@@ -32,7 +32,7 @@ static int	get_max_bits_count(t_stack *stack_a)
 		}
 		if (bit_count > max_bits)
 			max_bits = bit_count;
-		stack_ptr->top = stack_ptr->top->next;
+		current = current->next;
 	}
 	return (max_bits);
 }

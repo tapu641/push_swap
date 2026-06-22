@@ -15,16 +15,20 @@ t_list	*ft_lstnew(int value, int index)
 
 void	ft_lstadd_back(t_stack *stack, t_list *new)
 {
+	t_list	*current;
+
 	if (!stack || !new)
 		return ;
+	stack->size++;
 	if (!stack->top)
 	{
 		stack->top = new;
 		return ;
 	}
-	while (stack->top->next != NULL)
-		stack->top = stack->top->next;
-	stack->top->next = new;
+	current = stack->top;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new;
 }
 
 t_stack	*stack_new(void)

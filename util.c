@@ -22,7 +22,7 @@ long	ft_atol(char *arg, int i)
 		if (num > INT_MAX || num < INT_MIN)
 			print_error();  // これで問題ないんだっけ、、メモリリーク起きないか忘れた。
 		i++;
-		if (arg[i + 1] == '\0')
+		if (arg[i] == '\0')
 			return (num * sign);
 	}
 	print_error();

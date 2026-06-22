@@ -21,12 +21,13 @@ double	calc_disorder(int *num_arr, int arr_len)
 			if (num_arr[i] > num_arr[i + j + 1])
 				mistakes++;
 			total_pair++;
+			j++;
 		}
 		i++;
 	}
 	if (mistakes == 0)
 		exit(EXIT_SUCCESS);
-	return (mistakes / total_pair);
+	return ((double)mistakes / total_pair);
 }
 
 char	*get_mode(int mode)

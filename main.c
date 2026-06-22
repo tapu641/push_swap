@@ -9,9 +9,6 @@ void	initialize_stack(t_stack *stack)
 
 void	initialize_options(t_options *opt)
 {
-	opt = malloc(sizeof(t_options));
-	if (!opt)
-		print_error();
 	opt->sa = 0;
 	opt->sb = 0;
 	opt->ss = 0;
@@ -48,6 +45,7 @@ void	build_stack(int argc, char **argv, t_stack *stack, t_options *opt)
 		if (new_node == NULL)
 			print_error();
 		ft_lstadd_back(stack, new_node);
+		i++;
 	}
 }
 
@@ -78,6 +76,8 @@ int	main(int argc, char **argv)
 	t_stack		*stack_b;
 	t_options	*opt;
 
+	if (argc < 2)
+		return (EXIT_SUCCESS);
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
 	opt = malloc(sizeof(t_options));
