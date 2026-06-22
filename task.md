@@ -110,3 +110,6 @@ pb
 pa
 pa
 pa
+
+2.
+intminが処理できてない。
