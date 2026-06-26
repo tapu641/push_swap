@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   five_sort.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Created: 2026/05/14 21:28:37 by rnagai            #+#    #+#             */
+/*   Updated: 2026/05/24 18:22:16 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	five_sort(t_stack *a, t_stack *b, t_options *opt)
+int	ft_putchr(int str)
 {
-	if (a->size == 5)
+	char	c;
+
+	c = (char)str;
+	return (write(1, &c, 1));
+}
+
+int	ft_putstr(char *str)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	if (str == NULL)
+		return (ft_putstr("(null)"));
+	while (str[i] != '\0')
 	{
-		rotate_to_top(a, find_min_index(a), opt);
-		pb(a, b, opt);
+		flag = write(1, &str[i], 1);
+		if (flag == -1)
+			return (flag);
+		i++;
 	}
-	rotate_to_top(a, find_min_index(a), opt);
-	pb(a, b, opt);
-	three_sort(a, opt);
-	pa(a, b, opt);
-	pa(a, b, opt);
+	return (i);
 }
