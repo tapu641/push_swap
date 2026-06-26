@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
+/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	handle_flags(char *arg, t_options *opt)
@@ -98,6 +110,8 @@ int	*validate_args(int argc, char **argv, t_options *opt, int *arr_len)
 	flag_count = opt->flag_count;
 	*arr_len = argc - flag_count - 1;
 	num_arr = (int *)malloc(sizeof(int) * (*arr_len));
+	if (!num_arr)
+		return (NULL);
 	i = 1 + flag_count;
 	while (argv[i] != NULL)
 	{

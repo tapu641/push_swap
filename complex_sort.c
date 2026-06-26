@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 20:41:22 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/20 22:43:06 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/26 20:20:22 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,24 @@ static int	get_max_bits_count(t_stack *stack_a)
 	return (max_bits);
 }
 
+static int	check_option(t_stack *stack_a, t_options *opt)
+{
+	opt->calculation = COMPLEX;
+	return (stack_a->size);
+}
+
 void	complex_sort(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 {
-	int max_bits;
-	int stack_a_size;
-	int i;
+	int	max_bits;
+	int	stack_a_size;
+	int	i;
 	int	j;
-	
-	opt->calculation = COMPLEX; 
-	stack_a_size = stack_a->size;
+
+	stack_a_size = check_option(stack_a, opt);
 	max_bits = get_max_bits_count(stack_a);
 	i = 0;
+	if (stack_a_size <= 5)
+		return (switch_sort_by_stack_size(stack_a, stack_b, opt));
 	while (i < max_bits)
 	{
 		j = 0;
@@ -58,7 +65,7 @@ void	complex_sort(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 			else
 				pb(stack_a, stack_b, opt);
 			j++;
-		}	 
+		}
 		while (stack_b->top != NULL)
 			pa(stack_a, stack_b, opt);
 		i++;

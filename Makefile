@@ -6,7 +6,7 @@
 #    By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/20 21:46:43 by rnagai            #+#    #+#              #
-#    Updated: 2026/06/20 21:47:06 by rnagai           ###   ########.fr        #
+#    Updated: 2026/06/26 21:29:59 by rnagai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,9 @@ LIBFT	=	ft_printf/libftprintf.a
 SRCS	=	main.c \
 			bench.c \
 			complex_sort.c \
+			compress.c \
+			five_sort.c \
+			medium_sort.c \
 			node_operations.c \
 			parse.c \
 			push.c \
@@ -25,6 +28,7 @@ SRCS	=	main.c \
 			simple_sort.c \
 			stack.c \
 			swap.c \
+			three_sort.c \
 			util.c
 OBJS	=	$(SRCS:.c=.o)
 

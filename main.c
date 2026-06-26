@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
+/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "ft_printf.h"
 
@@ -47,6 +59,8 @@ void	build_stack(int argc, char **argv, t_stack *stack, t_options *opt)
 		ft_lstadd_back(stack, new_node);
 		i++;
 	}
+	free(num_arr);
+	free(num_index);
 }
 
 void	switch_algorithm(t_stack *stack_a, t_stack *stack_b, t_options *opt)
@@ -58,14 +72,14 @@ void	switch_algorithm(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 	disorder = opt->disorder;
 	if (mode == SIMPLE)
 		simple_sort(stack_a, stack_b, opt);
-	//else if (mode == MEDIUM)
-	//	medium_sort(stack_a, stack_b);
+	else if (mode == MEDIUM)
+		medium_sort(stack_a, stack_b, opt);
 	else if (mode == COMPLEX)
 		complex_sort(stack_a, stack_b, opt);
 	else if (disorder < 0.20)
 		simple_sort(stack_a, stack_b, opt);
-	//else if (disorder < 0.50)
-	//	medium_sort(stack_a, stack_b);
+	else if (disorder < 0.50)
+		medium_sort(stack_a, stack_b, opt);
 	else
 		complex_sort(stack_a, stack_b, opt);
 }
@@ -90,5 +104,6 @@ int	main(int argc, char **argv)
 	switch_algorithm(stack_a, stack_b, opt);
 	if (opt->is_bench)
 		print_bench(opt);
+	free_all(stack_a, stack_b, opt);
 	return (EXIT_SUCCESS);
 }

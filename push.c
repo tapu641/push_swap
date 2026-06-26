@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
+/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	pa(t_stack *a, t_stack *b, t_options *opt)
@@ -11,11 +23,9 @@ void	pa(t_stack *a, t_stack *b, t_options *opt)
 	b->size--;
 	a->size++;
 	if (opt->is_bench)
-	{
 		opt->pa++;
-	} else {
+	else
 		write(1, "pa\n", 3);
-	}
 }
 
 void	pb(t_stack *a, t_stack *b, t_options *opt)
@@ -29,10 +39,7 @@ void	pb(t_stack *a, t_stack *b, t_options *opt)
 	a->size--;
 	b->size++;
 	if (opt->is_bench)
-	{
 		opt->pb++;
-	} else {
+	else
 		write(1, "pb\n", 3);
-	}
 }
-

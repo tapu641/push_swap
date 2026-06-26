@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bench.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
+/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "ft_printf.h"
 
@@ -46,9 +58,9 @@ char	*get_mode(int mode)
 char	*get_calc(int calculation)
 {
 	if (calculation == SIMPLE)
-		return ("O(n²)");
+		return ("O(n^2)");
 	if (calculation == MEDIUM)
-		return ("O(n√n)");
+		return ("O(n*sqrt(n))");
 	if (calculation == COMPLEX)
 		return ("O(n log n)");
 	return ("Not selected");
@@ -68,7 +80,8 @@ int	calc_total_ops(t_options *opt)
 void	print_bench(t_options *opt)
 {
 	ft_printf("[bench] disorder: %d%%\n", opt->disorder);
-	ft_printf("[bench] strategy: %s / %s\n", get_mode(opt->mode), get_calc(opt->calculation));
+	ft_printf("[bench] strategy: %s / %s\n",
+		get_mode(opt->mode), get_calc(opt->calculation));
 	ft_printf("[bench] total_ops: %i\n", calc_total_ops(opt));
 	ft_printf("[bench] sa: %i  sb: %i  ss: %i  ", opt->sa, opt->sb, opt->ss);
 	ft_printf("pa: %i  pb: %i\n", opt->pa, opt->pb);
