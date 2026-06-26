@@ -56,7 +56,7 @@ void	push_chunks(t_stack *a, t_stack *b, t_options *opt)
 	}
 }
 
-static void	rotate_b_to_top(t_stack *stack, int index, t_options *opt)
+void	rotate_b_to_top(t_stack *stack, int index, t_options *opt)
 {
 	int	i;
 
