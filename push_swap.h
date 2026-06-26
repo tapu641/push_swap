@@ -6,12 +6,12 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:14:10 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/20 22:43:43 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/26 19:36:50 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#define PUSH_SWAP_H
 
 # include <limits.h> //INT_MIN,INT_MAX
 # include <stdlib.h> //malloc,free,exit
@@ -118,7 +118,26 @@ void	build_stack(int argc, char **argv, t_stack *stack, t_options *opt);
 void	switch_algorithm(t_stack *stack_a, t_stack *stack_b, t_options *opt);
 
 // ソートアルゴリズム
+
+
+// simple_sort
 void	simple_sort(t_stack *a, t_stack *b, t_options *opt);
+void rotate_to_top(t_stack *stack, int min_index);
+int find_min_index(t_stack *stack);
+
+// medium_sort
+void medium_sort(t_stack *a, t_stack *b);
+int find_max_index(t_stack *stack);
+int my_sqrt(int n);
+void compress(t_stack *a);
+void push_chunks(t_stack *a, t_stack *b);
+void push_back(t_stack *a, t_stack *b);
+
+// complex sort
 void	complex_sort(t_stack *stack_a, t_stack *stack_b, t_options *opt);
 
+
+// three or five
+void three_sort(t_stack *a);
+void five_sort(t_stack *a, t_stack *b);
 #endif
