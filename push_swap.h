@@ -118,7 +118,7 @@ void	switch_algorithm(t_stack *stack_a, t_stack *stack_b, t_options *opt);
 
 // simple_sort.c
 void	simple_sort(t_stack *a, t_stack *b, t_options *opt);
-void	rotate_to_top(t_stack *stack, int min_index, t_options *opt);
+void	rotate_a_to_top(t_stack *stack, int min_index, t_options *opt);
 int		find_min_index(t_stack *stack);
 
 // medium_sort.c / compress.c

@@ -16,10 +16,10 @@ void	five_sort(t_stack *a, t_stack *b, t_options *opt)
 {
 	if (a->size == 5)
 	{
-		rotate_to_top(a, find_min_index(a), opt);
+		rotate_a_to_top(a, find_min_index(a), opt);
 		pb(a, b, opt);
 	}
-	rotate_to_top(a, find_min_index(a), opt);
+	rotate_a_to_top(a, find_min_index(a), opt);
 	pb(a, b, opt);
 	three_sort(a, opt);
 	pa(a, b, opt);
