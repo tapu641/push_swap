@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:33:48 by rnagai            #+#    #+#             */
-/*   Updated: 2026/05/28 21:16:06 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/28 20:27:22 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_putnbr(int num, int *fail_flag)
 
 	print_count = 0;
 	if (num == INT_MIN)
-		return (write(1, "-2147483648", 11));
+		return (write(2, "-2147483648", 11));
 	if (num < 0)
 	{
 		if (ft_putchr('-') == -1)

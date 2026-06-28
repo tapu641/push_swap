@@ -61,6 +61,7 @@ check()
 		echo -e "${RED}[FAIL]${RESET} $desc"
 		FAIL=$((FAIL + 1))
 	fi
+	echo
 }
 
 check_sorted()
@@ -72,6 +73,7 @@ check_sorted()
 
 	if [ ! -x "$CHECKER" ]; then
 		echo -e "${RED}[SKIP]${RESET} $desc (checker_linux が見つかりません)"
+		echo
 		return
 	fi
 
@@ -86,12 +88,14 @@ check_sorted()
 	if [ -n "$stderr_out" ]; then
 		echo -e "${RED}[FAIL]${RESET} $desc (stderr: $stderr_out)"
 		FAIL=$((FAIL + 1))
+		echo
 		return
 	fi
 
 	if [ -z "$ops" ]; then
 		echo -e "${RED}[FAIL]${RESET} $desc (stdout が空: 操作が出力されていない)"
 		FAIL=$((FAIL + 1))
+		echo
 		return
 	fi
 
@@ -110,6 +114,7 @@ check_sorted()
 		echo -e "${RED}[FAIL]${RESET} $desc"
 		FAIL=$((FAIL + 1))
 	fi
+	echo
 }
 
 check_strategy()
@@ -122,6 +127,7 @@ check_strategy()
 
 	if [ ! -x "$CHECKER" ]; then
 		echo -e "${RED}[SKIP]${RESET} $desc (checker_linux が見つかりません)"
+		echo
 		return
 	fi
 
@@ -142,6 +148,7 @@ check_strategy()
 	if [ -z "$ops" ]; then
 		echo -e "${RED}[FAIL]${RESET} $desc (stdout が空)"
 		FAIL=$((FAIL + 1))
+		echo
 		return
 	fi
 
@@ -160,6 +167,7 @@ check_strategy()
 		echo -e "${RED}[FAIL]${RESET} $desc"
 		FAIL=$((FAIL + 1))
 	fi
+	echo
 }
 
 check_perf()
@@ -174,6 +182,7 @@ check_perf()
 
 	if [ ! -x "$CHECKER" ]; then
 		echo -e "${RED}[SKIP]${RESET} $desc (checker_linux が見つかりません)"
+		echo
 		return
 	fi
 
@@ -187,6 +196,7 @@ check_perf()
 	if [ -n "$stderr_out" ]; then
 		echo -e "${RED}[FAIL]${RESET} $desc (error: $stderr_out)"
 		FAIL=$((FAIL + 1))
+		echo
 		return
 	fi
 
@@ -216,6 +226,7 @@ check_perf()
 		echo -e "${RED}[FAIL]${RESET} $desc (ops: ${ops_count} / 上限: ${limit_pass})"
 		FAIL=$((FAIL + 1))
 	fi
+	echo
 }
 
 echo -e "${CYAN}========================================${RESET}"
@@ -308,6 +319,7 @@ else
 	echo -e "${RED}[FAIL]${RESET} --bench: stderrに[bench]行が出力されない"
 	FAIL=$((FAIL + 1))
 fi
+echo
 if [ -n "$bench_stdout" ]; then
 	echo -e "${GREEN}[PASS]${RESET} --bench: stdoutに操作が出力される"
 	PASS=$((PASS + 1))
@@ -315,6 +327,7 @@ else
 	echo -e "${RED}[FAIL]${RESET} --bench: stdoutに操作が出力されない"
 	FAIL=$((FAIL + 1))
 fi
+echo
 
 # ============================================================
 echo -e "\n${YELLOW}--- パフォーマンステスト (PDF VI.6) ---${RESET}"

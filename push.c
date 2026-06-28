@@ -24,8 +24,7 @@ void	pa(t_stack *a, t_stack *b, t_options *opt)
 	a->size++;
 	if (opt->is_bench)
 		opt->pa++;
-	else
-		write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *a, t_stack *b, t_options *opt)
@@ -40,6 +39,5 @@ void	pb(t_stack *a, t_stack *b, t_options *opt)
 	b->size++;
 	if (opt->is_bench)
 		opt->pb++;
-	else
-		write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }

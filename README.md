@@ -11,6 +11,9 @@
 
 ## Instructions
 
+## テストファイルの実行方法
+1. bash test.shを実行する。
+
 ## Resources/参考
 [exit() プログラムの終了](https://www.ibm.com/docs/ja/i/7.4.0?topic=functions-exit-end-program)
 

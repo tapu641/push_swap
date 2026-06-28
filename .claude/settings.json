@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make re *)",
+      "Bash(./push_swap --simple)",
+      "Bash(echo \"exit: $?\")"
+    ]
+  }
+}
