@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/28 20:09:57 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	find_min_index(t_stack *stack)
 	return (min_index);
 }
 
-void	rotate_to_top(t_stack *stack, int min_index, t_options *opt)
+void	rotate_a_to_top(t_stack *stack, int min_index, t_options *opt)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ void	simple_sort(t_stack *a, t_stack *b, t_options *opt)
 	while (a->size > 0)
 	{
 		min_index = find_min_index(a);
-		rotate_to_top(a, min_index, opt);
+		rotate_a_to_top(a, min_index, opt);
 		pb(a, b, opt);
 	}
 	while (b->top)

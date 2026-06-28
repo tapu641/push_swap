@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/28 17:35:22 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ void	parse_flags(char **argv, t_options *opt)
 			opt->flag_count++;
 		}
 		else
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
+			print_error();
+		if (!argv[i])
+			exit(EXIT_SUCCESS);
 	}
 	argv += i;
 }
@@ -108,6 +107,8 @@ int	*validate_args(int argc, char **argv, t_options *opt, int *arr_len)
 
 	parse_flags(argv, opt);
 	flag_count = opt->flag_count;
+	if (argc - flag_count < 2)
+		exit(EXIT_SUCCESS);
 	*arr_len = argc - flag_count - 1;
 	num_arr = (int *)malloc(sizeof(int) * (*arr_len));
 	if (!num_arr)

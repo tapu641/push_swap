@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/26 22:16:33 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ char	*get_mode(int mode)
 char	*get_calc(int calculation)
 {
 	if (calculation == SIMPLE)
-		return ("O(n^2)");
+		return ("O(n²)");
 	if (calculation == MEDIUM)
-		return ("O(n*sqrt(n))");
+		return ("O(n√n))");
 	if (calculation == COMPLEX)
 		return ("O(n log n)");
 	return ("Not selected");

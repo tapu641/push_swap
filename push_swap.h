@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:14:10 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 21:44:59 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/28 20:09:01 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	switch_algorithm(t_stack *stack_a, t_stack *stack_b, t_options *opt);
 
 // simple_sort.c
 void	simple_sort(t_stack *a, t_stack *b, t_options *opt);
-void	rotate_to_top(t_stack *stack, int min_index, t_options *opt);
+void	rotate_a_to_top(t_stack *stack, int min_index, t_options *opt);
 int		find_min_index(t_stack *stack);
 
 // medium_sort.c / compress.c
@@ -127,6 +127,7 @@ int		find_max_index(t_stack *stack);
 int		my_sqrt(int n);
 void	compress(t_stack *a);
 void	push_chunks(t_stack *a, t_stack *b, t_options *opt);
+void	rotate_b_to_top(t_stack *stack, int index, t_options *opt);
 void	push_back(t_stack *a, t_stack *b, t_options *opt);
 
 // complex_sort.c
