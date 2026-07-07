@@ -1,33 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
+/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stack *stack_new(void)
+t_list	*ft_lstnew(int value, int index)
 {
-    t_stack *stack;
+	t_list	*res;
 
-    stack = malloc(sizeof(t_stack));
-    if (!stack)
-    {
-        write(2, "Error\n", 6);
-        exit(1);
-    }
-    stack->top = NULL;
-    stack->size = 0;
-    return (stack);
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
+		return (NULL);
+	res->value = value;
+	res->index = index;
+	res->next = NULL;
+	return (res);
 }
 
-void    stack_free(t_stack *stack)
+void	ft_lstadd_back(t_stack *stack, t_list *new)
 {
-    t_list *current;
-    t_list *next;
+	t_list	*current;
 
-    if (!stack)
-        return ;
-    current = stack->top;
-    while (current)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-    free(stack);
+	if (!stack || !new)
+		return ;
+	stack->size++;
+	if (!stack->top)
+	{
+		stack->top = new;
+		return ;
+	}
+	current = stack->top;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new;
+}
+
+t_stack	*stack_new(void)
+{
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+	{
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
+	}
+	stack->top = NULL;
+	stack->size = 0;
+	return (stack);
+}
+
+void	stack_free(t_stack *stack)
+{
+	t_list	*current;
+	t_list	*next;
+
+	if (!stack)
+		return ;
+	current = stack->top;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(stack);
 }

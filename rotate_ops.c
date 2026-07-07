@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_operations.c                                  :+:      :+:    :+:   */
+/*   rotate_ops.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,37 +12,51 @@
 
 #include "push_swap.h"
 
-t_list	*node_new(int value)
-{
-	t_list	*node;
-
-	node = malloc(sizeof(t_list));
-	if (!node)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-	node->value = value;
-	node->next = NULL;
-	return (node);
-}
-
-void	push_front(t_list **head, t_list *node)
-{
-	if (!head || !node)
-		return ;
-	node->next = *head;
-	*head = node;
-}
-
-t_list	*pop_front(t_list **head)
+void	ra(t_stack *stack, int flag, t_options *opt)
 {
 	t_list	*tmp;
+	t_list	*last;
 
-	if (!head || !(*head))
-		return (NULL);
-	tmp = *head;
-	*head = (*head)->next;
-	tmp->next = NULL;
-	return (tmp);
+	if (!stack || !stack->top || stack->size < 2)
+		return ;
+	tmp = pop_front(&(stack->top));
+	last = stack->top;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = tmp;
+	if (flag)
+	{
+		if (opt->is_bench)
+			opt->ra++;
+		write(1, "ra\n", 3);
+	}
+}
+
+void	rb(t_stack *stack, int flag, t_options *opt)
+{
+	t_list	*tmp;
+	t_list	*last;
+
+	if (!stack || !stack->top || stack->size < 2)
+		return ;
+	tmp = pop_front(&(stack->top));
+	last = stack->top;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = tmp;
+	if (flag)
+	{
+		if (opt->is_bench)
+			opt->rb++;
+		write(1, "rb\n", 3);
+	}
+}
+
+void	rr(t_stack *a, t_stack *b, t_options *opt)
+{
+	ra(a, 0, opt);
+	rb(b, 0, opt);
+	if (opt->is_bench)
+		opt->rr++;
+	write(1, "rr\n", 3);
 }

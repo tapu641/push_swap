@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_operations.c                                  :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,37 +12,32 @@
 
 #include "push_swap.h"
 
-t_list	*node_new(int value)
-{
-	t_list	*node;
-
-	node = malloc(sizeof(t_list));
-	if (!node)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-	node->value = value;
-	node->next = NULL;
-	return (node);
-}
-
-void	push_front(t_list **head, t_list *node)
-{
-	if (!head || !node)
-		return ;
-	node->next = *head;
-	*head = node;
-}
-
-t_list	*pop_front(t_list **head)
+void	pa(t_stack *a, t_stack *b, t_options *opt)
 {
 	t_list	*tmp;
 
-	if (!head || !(*head))
-		return (NULL);
-	tmp = *head;
-	*head = (*head)->next;
-	tmp->next = NULL;
-	return (tmp);
+	if (!a || !b || !b->top)
+		return ;
+	tmp = pop_front(&(b->top));
+	push_front(&(a->top), tmp);
+	b->size--;
+	a->size++;
+	if (opt->is_bench)
+		opt->pa++;
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_stack *a, t_stack *b, t_options *opt)
+{
+	t_list	*tmp;
+
+	if (!a || !b || !a->top)
+		return ;
+	tmp = pop_front(&(a->top));
+	push_front(&(b->top), tmp);
+	a->size--;
+	b->size++;
+	if (opt->is_bench)
+		opt->pb++;
+	write(1, "pb\n", 3);
 }

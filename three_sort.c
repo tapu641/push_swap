@@ -1,48 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_operations.c                                  :+:      :+:    :+:   */
+/*   three_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
+/*   Created: 2026/06/20 00:00:00 by rnagai            #+#    #+#             */
 /*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*node_new(int value)
+void	three_sort(t_stack *a, t_options *opt)
 {
-	t_list	*node;
+	int	top;
+	int	mid;
+	int	bot;
 
-	node = malloc(sizeof(t_list));
-	if (!node)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-	node->value = value;
-	node->next = NULL;
-	return (node);
-}
-
-void	push_front(t_list **head, t_list *node)
-{
-	if (!head || !node)
+	top = a->top->value;
+	mid = a->top->next->value;
+	bot = a->top->next->next->value;
+	if (top < mid && mid < bot)
 		return ;
-	node->next = *head;
-	*head = node;
-}
-
-t_list	*pop_front(t_list **head)
-{
-	t_list	*tmp;
-
-	if (!head || !(*head))
-		return (NULL);
-	tmp = *head;
-	*head = (*head)->next;
-	tmp->next = NULL;
-	return (tmp);
+	else if (top < mid && mid > bot && top < bot)
+	{
+		rra(a, 1, opt);
+		sa(a, 1, opt);
+	}
+	else if (top > mid && mid < bot && top < bot)
+		sa(a, 1, opt);
+	else if (top < mid && mid > bot && top > bot)
+		rra(a, 1, opt);
+	else if (top > mid && mid < bot && top > bot)
+		ra(a, 1, opt);
+	else
+	{
+		sa(a, 1, opt);
+		rra(a, 1, opt);
+	}
 }
