@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 22:16:33 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:01:59 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	calc_disorder(int *num_arr, int arr_len)
 		i++;
 	}
 	if (mistakes == 0)
-		exit(EXIT_SUCCESS);
+		return (0.0);
 	return ((double)mistakes / total_pair);
 }
 
@@ -60,7 +60,7 @@ char	*get_calc(int calculation)
 	if (calculation == SIMPLE)
 		return ("O(n²)");
 	if (calculation == MEDIUM)
-		return ("O(n√n))");
+		return ("O(n√n)");
 	if (calculation == COMPLEX)
 		return ("O(n log n)");
 	return ("Not selected");
@@ -86,5 +86,5 @@ void	print_bench(t_options *opt)
 	ft_printf("[bench] sa: %i  sb: %i  ss: %i  ", opt->sa, opt->sb, opt->ss);
 	ft_printf("pa: %i  pb: %i\n", opt->pa, opt->pb);
 	ft_printf("[bench] ra: %i  rb: %i  rr: %i  ", opt->ra, opt->rb, opt->rr);
-	ft_printf("rra: %i rrb: %i rrr: %i", opt->rra, opt->rrb, opt->rrr);
+	ft_printf("rra: %i rrb: %i rrr: %i\n", opt->rra, opt->rrb, opt->rrr);
 }

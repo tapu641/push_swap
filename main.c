@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 15:48:39 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,10 @@ int	main(int argc, char **argv)
 	initialize_stack(stack_b);
 	initialize_options(opt);
 	build_stack(argc, argv, stack_a, opt);
-	switch_algorithm(stack_a, stack_b, opt);
+	if (opt->disorder != 0.0)
+		switch_algorithm(stack_a, stack_b, opt);
 	if (opt->is_bench)
-		print_bench(opt);
+		print_bench(opt);	
 	free_all(stack_a, stack_b, opt);
 	return (EXIT_SUCCESS);
 }
