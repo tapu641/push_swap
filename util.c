@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:19:59 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ long	ft_atol(char *arg, int i)
 	{
 		num = num * 10 + (arg[i] - '0');
 		if ((sign == 1 && num > INT_MAX) || (sign == -1 && num - 1 > INT_MAX))
-			print_error();
+			return ((long)INT_MIN - 1);
 		i++;
 		if (arg[i] == '\0')
 			return (num * sign);
 	}
-	print_error();
 	return ((long)INT_MIN - 1);
 }
 
@@ -74,6 +73,8 @@ void	free_all(t_stack *stack_a, t_stack *stack_b, t_options *opt)
 		free(stack_a->top);
 		stack_a->top = step;
 	}
+	free(opt->num_arr);
+	free(opt->num_index);
 	free(stack_a);
 	free(stack_b);
 	free(opt);

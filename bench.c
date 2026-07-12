@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/07/12 16:01:59 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:02:55 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ double	calc_disorder(int *num_arr, int arr_len)
 		j = 0;
 		while (i + j < arr_len - 1)
 		{
-			if (num_arr[i] == num_arr[i + j + 1])
-				print_error();
 			if (num_arr[i] > num_arr[i + j + 1])
 				mistakes++;
 			total_pair++;
