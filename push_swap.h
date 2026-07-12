@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 20:14:10 by rnagai            #+#    #+#             */
-/*   Updated: 2026/07/12 16:09:40 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:53:32 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		*assign_index(int *num_arr, int arr_len);
 void	validate_args(int argc, char **argv, t_options *opt, int *arr_len);
 
 // bench.c
-double	calc_disorder(int *num_arr, int arr_len);
+double	calc_disorder(t_options *opt, int arr_len);
 char	*get_mode(int mode);
 char	*get_calc(int calculation);
 int		calc_total_ops(t_options *opt);

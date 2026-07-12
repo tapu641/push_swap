@@ -6,14 +6,14 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:55 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:52:08 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf.h"
 
-double	calc_disorder(int *num_arr, int arr_len)
+double	calc_disorder(t_options *opt, int arr_len)
 {
 	int	total_pair;
 	int	mistakes;
@@ -28,7 +28,9 @@ double	calc_disorder(int *num_arr, int arr_len)
 		j = 0;
 		while (i + j < arr_len - 1)
 		{
-			if (num_arr[i] > num_arr[i + j + 1])
+			if (opt->num_arr[i] == opt->num_arr[i + j + 1])
+				opt->fail_flag = 1;
+			if (opt->num_arr[i] > opt->num_arr[i + j + 1])
 				mistakes++;
 			total_pair++;
 			j++;
