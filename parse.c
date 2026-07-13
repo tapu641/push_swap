@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:37:56 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parse_flags(char **argv, t_options *opt)
 	int	i;
 
 	i = 1;
-	while (argv[i][0] == '-' && argv[i][1] == '-')
+	while (argv[i] && argv[i][0] == '-' && argv[i][1] == '-')
 	{
 		if (handle_flags(&argv[i][2], opt))
 		{
@@ -52,11 +52,10 @@ void	parse_flags(char **argv, t_options *opt)
 		}
 		else
 		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
+			opt->fail_flag = 1;
+			return ;
 		}
 	}
-	argv += i;
 }
 
 int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
@@ -99,27 +98,31 @@ int	*assign_index(int *num_arr, int arr_len)
 	return (num_index_arr);
 }
 
-int	*validate_args(int argc, char **argv, t_options *opt, int *arr_len)
+void	validate_args(int argc, char **argv, t_options *opt, int *arr_len)
 {
-	int		flag_count;
-	int		*num_arr;
 	int		i;
 	long	tmp;
 
 	parse_flags(argv, opt);
-	flag_count = opt->flag_count;
-	*arr_len = argc - flag_count - 1;
-	num_arr = (int *)malloc(sizeof(int) * (*arr_len));
-	if (!num_arr)
-		return (NULL);
-	i = 1 + flag_count;
+	if (opt->fail_flag == 1)
+		return ;
+	*arr_len = argc - opt->flag_count - 1;
+	opt->num_arr = (int *)malloc(sizeof(int) * (*arr_len));
+	if (!opt->num_arr)
+	{
+		opt->fail_flag = 1;
+		return ;
+	}
+	i = 1 + opt->flag_count;
 	while (argv[i] != NULL)
 	{
 		tmp = ft_atol(argv[i], 0);
 		if (tmp > INT_MAX || tmp < INT_MIN)
-			exit(EXIT_FAILURE);
-		num_arr[i - 1 - flag_count] = tmp;
+		{
+			opt->fail_flag = 1;
+			return ;
+		}
+		opt->num_arr[i - 1 - opt->flag_count] = tmp;
 		i++;
 	}
-	return (num_arr);
 }

@@ -25,8 +25,7 @@ void	sa(t_stack *stack, int flag, t_options *opt)
 	{
 		if (opt->is_bench)
 			opt->sa++;
-		else
-			write(1, "sa\n", 3);
+		write(1, "sa\n", 3);
 	}
 }
 
@@ -43,8 +42,7 @@ void	sb(t_stack *stack, int flag, t_options *opt)
 	{
 		if (opt->is_bench)
 			opt->sb++;
-		else
-			write(1, "sb\n", 3);
+		write(1, "sb\n", 3);
 	}
 }
 
@@ -54,6 +52,5 @@ void	ss(t_stack *a, t_stack *b, t_options *opt)
 	sb(b, 0, opt);
 	if (opt->is_bench)
 		opt->ss++;
-	else
-		write(1, "ss\n", 3);
+	write(1, "ss\n", 3);
 }

@@ -28,8 +28,7 @@ void	ra(t_stack *stack, int flag, t_options *opt)
 	{
 		if (opt->is_bench)
 			opt->ra++;
-		else
-			write(1, "ra\n", 3);
+		write(1, "ra\n", 3);
 	}
 }
 
@@ -49,8 +48,7 @@ void	rb(t_stack *stack, int flag, t_options *opt)
 	{
 		if (opt->is_bench)
 			opt->rb++;
-		else
-			write(1, "rb\n", 3);
+		write(1, "rb\n", 3);
 	}
 }
 
@@ -60,6 +58,5 @@ void	rr(t_stack *a, t_stack *b, t_options *opt)
 	rb(b, 0, opt);
 	if (opt->is_bench)
 		opt->rr++;
-	else
-		write(1, "rr\n", 3);
+	write(1, "rr\n", 3);
 }

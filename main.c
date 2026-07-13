@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/12 16:49:48 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,38 @@ void	initialize_options(t_options *opt)
 	opt->calculation = SIMPLE;
 	opt->is_bench = FALSE;
 	opt->flag_count = 0;
+	opt->fail_flag = 0;
+	opt->num_arr = NULL;
+	opt->num_index = NULL;
 }
 
 void	build_stack(int argc, char **argv, t_stack *stack, t_options *opt)
 {
-	int		*num_arr;
-	int		*num_index;
 	int		arr_len;
 	int		i;
 	t_list	*new_node;
 
-	num_arr = validate_args(argc, argv, opt, &arr_len);
-	num_index = assign_index(num_arr, arr_len);
-	opt->disorder = calc_disorder(num_arr, arr_len);
-	i = 0;
-	while (i < arr_len)
+	validate_args(argc, argv, opt, &arr_len);
+	if (opt->fail_flag == 0)
+		opt->num_index = assign_index(opt->num_arr, arr_len);
+	if (opt->fail_flag == 1 || !opt->num_index)
 	{
-		new_node = ft_lstnew(num_arr[i], num_index[i]);
+		opt->fail_flag = 1;
+		return ;
+	}
+	opt->disorder = calc_disorder(opt, arr_len);
+	i = 0;
+	while (i < arr_len && opt->fail_flag == 0)
+	{
+		new_node = ft_lstnew(opt->num_arr[i], opt->num_index[i]);
 		if (new_node == NULL)
-			print_error();
+		{
+			opt->fail_flag = 1;
+			return ;
+		}
 		ft_lstadd_back(stack, new_node);
 		i++;
 	}
-	free(num_arr);
-	free(num_index);
 }
 
 void	switch_algorithm(t_stack *stack_a, t_stack *stack_b, t_options *opt)
@@ -89,6 +97,7 @@ int	main(int argc, char **argv)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_options	*opt;
+	int			fail;
 
 	if (argc < 2)
 		return (EXIT_SUCCESS);
@@ -101,9 +110,13 @@ int	main(int argc, char **argv)
 	initialize_stack(stack_b);
 	initialize_options(opt);
 	build_stack(argc, argv, stack_a, opt);
-	switch_algorithm(stack_a, stack_b, opt);
-	if (opt->is_bench)
+	if (opt->fail_flag == 0 && opt->disorder != 0.0)
+		switch_algorithm(stack_a, stack_b, opt);
+	if (opt->fail_flag == 0 && opt->is_bench && stack_a->size > 0)
 		print_bench(opt);
+	fail = opt->fail_flag;
 	free_all(stack_a, stack_b, opt);
+	if (fail == 1)
+		print_error();
 	return (EXIT_SUCCESS);
 }

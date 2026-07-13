@@ -21,11 +21,6 @@ int	ft_putdec(double num, int *fail_flag)
 	dec = (num * 10000) - (integer * 100);
 	if (num == 1)
 		return (ft_putstr("100.00"));
-	if (integer < 10)
-	{
-		if (ft_putchr('0') == -1)
-			return (-1);
-	}
 	if (ft_putnbr(integer, fail_flag) == -1)
 		return (-1);
 	if (ft_putchr('.') == -1)

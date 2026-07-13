@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 21:28:37 by rnagai            #+#    #+#             */
-/*   Updated: 2026/05/24 18:22:16 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/28 20:28:01 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_putchr(int str)
 	char	c;
 
 	c = (char)str;
-	return (write(1, &c, 1));
+	return (write(2, &c, 1));
 }
 
 int	ft_putstr(char *str)
@@ -30,7 +30,7 @@ int	ft_putstr(char *str)
 		return (ft_putstr("(null)"));
 	while (str[i] != '\0')
 	{
-		flag = write(1, &str[i], 1);
+		flag = write(2, &str[i], 1);
 		if (flag == -1)
 			return (flag);
 		i++;

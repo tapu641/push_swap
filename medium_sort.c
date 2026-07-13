@@ -6,9 +6,10 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/06/28 20:09:35 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	find_chunk_index(t_stack *a, int chunk_max)
