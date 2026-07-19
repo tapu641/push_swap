@@ -97,6 +97,7 @@ int	main(int argc, char **argv)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_options	*opt;
+	int			fail;
 
 	if (argc < 2)
 		return (EXIT_SUCCESS);
@@ -113,8 +114,9 @@ int	main(int argc, char **argv)
 		switch_algorithm(stack_a, stack_b, opt);
 	if (opt->fail_flag == 0 && opt->is_bench && stack_a->size > 0)
 		print_bench(opt);
+	fail = opt->fail_flag;
 	free_all(stack_a, stack_b, opt);
-	if (opt->fail_flag == 1)
+	if (fail == 1)
 		print_error();
 	return (EXIT_SUCCESS);
 }
