@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/26 00:00:00 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/19 13:43:59 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,4 @@ void	ft_lstadd_back(t_stack *stack, t_list *new)
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new;
-}
-
-t_stack	*stack_new(void)
-{
-	t_stack	*stack;
-
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-	{
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
-	}
-	stack->top = NULL;
-	stack->size = 0;
-	return (stack);
-}
-
-void	stack_free(t_stack *stack)
-{
-	t_list	*current;
-	t_list	*next;
-
-	if (!stack)
-		return ;
-	current = stack->top;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	free(stack);
 }

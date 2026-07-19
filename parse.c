@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/07/12 16:37:56 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/19 13:24:47 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parse_flags(char **argv, t_options *opt)
 	}
 }
 
-int		apply_index(int *num_arr, int *num_index_arr, int arr_len, long min_val)
+int	apply_index(int *num_arr, int *num_idx_arr, int arr_len, long min_val)
 {
 	int		i;
 	int		j;
@@ -74,7 +74,7 @@ int		apply_index(int *num_arr, int *num_index_arr, int arr_len, long min_val)
 			if (num_arr[j] > min_border && num_arr[j] < min_val)
 			{
 				min_val = num_arr[j];
-				num_index_arr[j] = i;
+				num_idx_arr[j] = i;
 			}
 			j++;
 		}
@@ -85,17 +85,17 @@ int		apply_index(int *num_arr, int *num_index_arr, int arr_len, long min_val)
 	return (0);
 }
 
-int		*assign_index(int *num_arr, int arr_len)
+int	*assign_index(int *num_arr, int arr_len)
 {
 	long	min_val;
-	int		*num_index_arr;
+	int		*num_idx_arr;
 
 	min_val = (long)INT_MAX + 1;
-	num_index_arr = (int *)malloc(sizeof(int) * arr_len);
-	if (!num_index_arr)
+	num_idx_arr = (int *)malloc(sizeof(int) * arr_len);
+	if (!num_idx_arr)
 		return (NULL);
-	apply_index(num_arr, num_index_arr, arr_len, min_val);
-	return (num_index_arr);
+	apply_index(num_arr, num_idx_arr, arr_len, min_val);
+	return (num_idx_arr);
 }
 
 void	validate_args(int argc, char **argv, t_options *opt, int *arr_len)
