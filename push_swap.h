@@ -102,7 +102,7 @@ void	print_error(void);
 // parse.c
 int		handle_flags(char *arg, t_options *opt);
 void	parse_flags(char **argv, t_options *opt);
-int		apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val);
+int		apply_index(int *num_arr, int *num_index_arr, int arr_len, long min_val);
 int		*assign_index(int *num_arr, int arr_len);
 void	validate_args(int argc, char **argv, t_options *opt, int *arr_len);
 

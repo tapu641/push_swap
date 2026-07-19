@@ -58,14 +58,14 @@ void	parse_flags(char **argv, t_options *opt)
 	}
 }
 
-int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
+int		apply_index(int *num_arr, int *num_index_arr, int arr_len, long min_val)
 {
-	int	i;
-	int	j;
-	int	min_border;
+	int		i;
+	int		j;
+	long	min_border;
 
 	i = 0;
-	min_border = INT_MIN;
+	min_border = (long)INT_MIN - 1;
 	while (i < arr_len)
 	{
 		j = 0;
@@ -79,18 +79,18 @@ int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
 			j++;
 		}
 		min_border = min_val;
-		min_val = INT_MAX;
+		min_val = (long)INT_MAX + 1;
 		i++;
 	}
 	return (0);
 }
 
-int	*assign_index(int *num_arr, int arr_len)
+int		*assign_index(int *num_arr, int arr_len)
 {
-	int	min_val;
-	int	*num_index_arr;
+	long	min_val;
+	int		*num_index_arr;
 
-	min_val = INT_MAX;
+	min_val = (long)INT_MAX + 1;
 	num_index_arr = (int *)malloc(sizeof(int) * arr_len);
 	if (!num_index_arr)
 		return (NULL);
