@@ -6,7 +6,7 @@
 /*   By: rnagai <rnagai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 00:00:00 by rnagai            #+#    #+#             */
-/*   Updated: 2026/06/28 17:35:22 by rnagai           ###   ########.fr       */
+/*   Updated: 2026/07/19 13:24:47 by rnagai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parse_flags(char **argv, t_options *opt)
 	int	i;
 
 	i = 1;
-	while (argv[i][0] == '-' && argv[i][1] == '-')
+	while (argv[i] && argv[i][0] == '-' && argv[i][1] == '-')
 	{
 		if (handle_flags(&argv[i][2], opt))
 		{
@@ -51,21 +51,21 @@ void	parse_flags(char **argv, t_options *opt)
 			opt->flag_count++;
 		}
 		else
-			print_error();
-		if (!argv[i])
-			exit(EXIT_SUCCESS);
+		{
+			opt->fail_flag = 1;
+			return ;
+		}
 	}
-	argv += i;
 }
 
-int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
+int	apply_index(int *num_arr, int *num_idx_arr, int arr_len, long min_val)
 {
-	int	i;
-	int	j;
-	int	min_border;
+	int		i;
+	int		j;
+	long	min_border;
 
 	i = 0;
-	min_border = INT_MIN;
+	min_border = (long)INT_MIN - 1;
 	while (i < arr_len)
 	{
 		j = 0;
@@ -74,12 +74,12 @@ int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
 			if (num_arr[j] > min_border && num_arr[j] < min_val)
 			{
 				min_val = num_arr[j];
-				num_index_arr[j] = i;
+				num_idx_arr[j] = i;
 			}
 			j++;
 		}
 		min_border = min_val;
-		min_val = INT_MAX;
+		min_val = (long)INT_MAX + 1;
 		i++;
 	}
 	return (0);
@@ -87,40 +87,42 @@ int	apply_index(int *num_arr, int *num_index_arr, int arr_len, int min_val)
 
 int	*assign_index(int *num_arr, int arr_len)
 {
-	int	min_val;
-	int	*num_index_arr;
+	long	min_val;
+	int		*num_idx_arr;
 
-	min_val = INT_MAX;
-	num_index_arr = (int *)malloc(sizeof(int) * arr_len);
-	if (!num_index_arr)
+	min_val = (long)INT_MAX + 1;
+	num_idx_arr = (int *)malloc(sizeof(int) * arr_len);
+	if (!num_idx_arr)
 		return (NULL);
-	apply_index(num_arr, num_index_arr, arr_len, min_val);
-	return (num_index_arr);
+	apply_index(num_arr, num_idx_arr, arr_len, min_val);
+	return (num_idx_arr);
 }
 
-int	*validate_args(int argc, char **argv, t_options *opt, int *arr_len)
+void	validate_args(int argc, char **argv, t_options *opt, int *arr_len)
 {
-	int		flag_count;
-	int		*num_arr;
 	int		i;
 	long	tmp;
 
 	parse_flags(argv, opt);
-	flag_count = opt->flag_count;
-	if (argc - flag_count < 2)
-		exit(EXIT_SUCCESS);
-	*arr_len = argc - flag_count - 1;
-	num_arr = (int *)malloc(sizeof(int) * (*arr_len));
-	if (!num_arr)
-		return (NULL);
-	i = 1 + flag_count;
+	if (opt->fail_flag == 1)
+		return ;
+	*arr_len = argc - opt->flag_count - 1;
+	opt->num_arr = (int *)malloc(sizeof(int) * (*arr_len));
+	if (!opt->num_arr)
+	{
+		opt->fail_flag = 1;
+		return ;
+	}
+	i = 1 + opt->flag_count;
 	while (argv[i] != NULL)
 	{
 		tmp = ft_atol(argv[i], 0);
 		if (tmp > INT_MAX || tmp < INT_MIN)
-			exit(EXIT_FAILURE);
-		num_arr[i - 1 - flag_count] = tmp;
+		{
+			opt->fail_flag = 1;
+			return ;
+		}
+		opt->num_arr[i - 1 - opt->flag_count] = tmp;
 		i++;
 	}
-	return (num_arr);
 }
